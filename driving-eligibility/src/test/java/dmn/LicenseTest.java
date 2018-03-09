@@ -23,43 +23,44 @@ public class LicenseTest {
 
 		KieContainer kieContainer = kieServices.getKieClasspathContainer();
 		dmnRuntime = kieContainer.newKieSession().getKieRuntime( DMNRuntime.class );
-		dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2", "driving-eligibility-2");
+		dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2", "driving-eligibility");
 		
 		dmnContext = dmnRuntime.newContext();		
 	}
 
+/*	
+	@Test
+	public void testUS() {		
+		Person person = new Person("Tom", 35, "123 Tramway Ln.", "Albuquerque", "NM", "87123", "United States");
+
+		dmnContext.set("Person", person);
+
+		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
+		//Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
+		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.TRUE);
+
+		person.setAge(15);
+		dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
+
+		//Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
+		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.FALSE);
+	}
 	
 	@Test
-	public void testNotUS() {		
-		Person person = new Person("Donato", 17, "italy");
+	public void testGermany() {		
+		Person person = new Person("Tom", 35, "123 Tramway Ln.", "Albuquerque", "NM", "87123", "Germany");
 
 		dmnContext.set("Person", person);
 
 		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
 		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
-		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.FALSE);
+		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.TRUE);
 
-		person.setAge(18);
+		person.setAge(15);
 		dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
 
 		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
-		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.TRUE);
-	}
-
-	@Test
-	public void testUS() {
-		Person person = new Person("Jim", 15, "us");
-		dmnContext.set("Person", person);
-
-		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
-		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
 		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.FALSE);
-
-		person.setAge(16);
-		dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
-
-		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
-		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.TRUE);
 	}
-	
+*/
 }

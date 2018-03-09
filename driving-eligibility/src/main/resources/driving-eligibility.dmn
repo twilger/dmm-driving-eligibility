@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.0.3.2" id="_90a17b17-c884-4fa9-ba59-7a47899d89b2" name="driving-eligibility" namespace="http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2" triso:logoChoice="None">
+  <semantic:extensionElements>
+    <triso:dmnInputs>[{"name":"Person","id":"_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874","type":"string"}]</triso:dmnInputs>
+    <drools:decisionServices xmlns:drools="http://www.drools.org/kie/dmn/1.1"/>
+  </semantic:extensionElements>
+  <semantic:itemDefinition isCollection="false" label="tPerson" name="tPerson">
+    <semantic:itemComponent id="_017a9e1d-6c97-4365-951d-f87dff35c1cf" isCollection="false" name="name">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_a8bf6cda-2de1-449d-9e33-db84b15325d9" isCollection="false" name="age">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_192f1e15-490e-474d-a361-92a7c0920b08" name="address">
+      <semantic:typeRef>tAddress</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_9bbe551c-cc65-4c69-8c65-7ff849e8ba72" isCollection="true" name="practiceLogEntries">
+      <semantic:typeRef>tPracticeLogEntry</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition label="tAddress" name="tAddress">
+    <semantic:itemComponent id="_510e5501-65bd-41de-9dee-5e476cb692a9" name="street">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_42dad4dc-b4fc-44ed-b4f8-02ebeded5414" name="city">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_92c9238c-336c-4b19-862e-2c30971ba8f7" name="state">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_06d49b6f-9be9-4108-971c-63aace269288" name="zip">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_fd118bdd-cd4d-4502-8c39-e00c517e8485" name="country">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition isCollection="true" label="tPracticeLogEntry" name="tPracticeLogEntry">
+    <semantic:itemComponent id="_24ae78d0-de3d-4175-98a9-142725a588b2" name="startTime">
+      <semantic:typeRef>feel:dateTime</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_0b8563e7-a41a-4d39-a4f5-0ddf3fdffa0f" name="endTime">
+      <semantic:typeRef>feel:dateTime</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:decision id="_14660163-4961-4138-bcfb-11813ff53670" name="Driving Licence Eligibility">
+    <semantic:variable id="_4792c260-b449-4bbd-835d-6bddeddc08b6" name="Driving Licence Eligibility" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_18012555-dc4b-4ae7-855a-d26563c21ed2"/>
+    </semantic:informationRequirement>
+    <semantic:knowledgeRequirement>
+      <semantic:requiredKnowledge href="#_eca71f36-6cf2-4e08-bcb0-311fdcaef3f3"/>
+    </semantic:knowledgeRequirement>
+    <semantic:knowledgeRequirement>
+      <semantic:requiredKnowledge href="#_1ff06a21-4c8c-4e00-9829-0bc21479b1ed"/>
+    </semantic:knowledgeRequirement>
+    <semantic:literalExpression id="_45c24b7c-6d87-454e-9960-f87952cb90b4">
+      <semantic:text>Country has cars(Person) 
+and Meets age requirements
+and Practice duration(Person) &gt;= duration("PT15H")
+</semantic:text>
+    </semantic:literalExpression>
+  </semantic:decision>
+  <semantic:inputData id="_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874" name="Person">
+    <semantic:variable id="_5bc6ceac-bfa1-45b5-bd6c-d201ca3768f8" name="Person" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:decision id="_18012555-dc4b-4ae7-855a-d26563c21ed2" name="Meets age requirements">
+    <semantic:variable id="_3c3c13d3-7250-4a04-bd17-02d9d9ee21b7" name="Meets age requirements" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874"/>
+    </semantic:informationRequirement>
+    <semantic:context id="_e71d0afb-7ae3-4f05-b698-0d4b7e3935dd">
+      <semantic:contextEntry>
+        <semantic:variable id="_a4b37c67-60b3-43f4-b3d5-c93c24ef0f43" name="Driver" typeRef="tPerson"/>
+        <semantic:literalExpression id="_6717bc79-5761-478c-a890-ecbece950a95">
+          <semantic:text>Person</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:variable id="_b94ebb82-0594-49e0-a7c6-67b2654829c7" name="Country" typeRef="feel:string"/>
+        <semantic:literalExpression id="_7693f50c-2ba6-4f1b-8abc-7c95c45dbff3">
+          <semantic:text>Driver.address.country</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:variable id="_14e637e3-9f8a-4bd6-b926-6bf04c8ad7ff" name="Age" typeRef="feel:number"/>
+        <semantic:literalExpression id="_84ca860d-6213-4c38-8a2c-958f34fa1c50">
+          <semantic:text>Driver.age</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:variable id="_d9b3888a-dd8a-4e3e-a22f-2e2294ab5e8a" name="Result" typeRef="feel:boolean"/>
+        <semantic:decisionTable hitPolicy="UNIQUE" id="_8968583a-6b06-4d6e-8324-87bcbb496402" outputLabel="Result">
+          <semantic:input id="_4a9e2d06-639f-4240-955e-f6e8ed35b643">
+            <semantic:inputExpression typeRef="feel:string">
+              <semantic:text>Country</semantic:text>
+            </semantic:inputExpression>
+          </semantic:input>
+          <semantic:input id="_4717625f-8518-4261-b0a7-9ccbe3543c3c">
+            <semantic:inputExpression typeRef="feel:number">
+              <semantic:text>Age</semantic:text>
+            </semantic:inputExpression>
+          </semantic:input>
+          <semantic:output id="_37c7f4a6-4c52-4f93-b37b-4f951f4bae23">
+            <semantic:defaultOutputEntry>
+              <semantic:text>false</semantic:text>
+            </semantic:defaultOutputEntry>
+          </semantic:output>
+          <semantic:rule id="_ce56c491-a75b-4707-83c8-ecbd04b9cfc5">
+            <semantic:inputEntry id="_01a8c5eb-9622-4d90-ba96-4fd81c48416d">
+              <semantic:text>"United States"</semantic:text>
+            </semantic:inputEntry>
+            <semantic:inputEntry id="_c15ac8cf-349c-4a5b-acb9-f7ab089cc41b">
+              <semantic:text>&gt;= 16</semantic:text>
+            </semantic:inputEntry>
+            <semantic:outputEntry id="_04ceb66f-c7c4-40ca-81af-290e1347cd0c">
+              <semantic:text>true</semantic:text>
+            </semantic:outputEntry>
+          </semantic:rule>
+          <semantic:rule id="_5fccc1d8-341e-48e6-802f-e5fd58e477e3">
+            <semantic:inputEntry id="_92371359-3eb4-440d-b25d-f614fb8f321d">
+              <semantic:text>"Germany"</semantic:text>
+            </semantic:inputEntry>
+            <semantic:inputEntry id="_1d9dd536-6d82-4742-9761-8f23019e252d">
+              <semantic:text>&gt;= 18</semantic:text>
+            </semantic:inputEntry>
+            <semantic:outputEntry id="_9aa35953-7a9f-4c8a-962f-a367b529d5bf">
+              <semantic:text>true</semantic:text>
+            </semantic:outputEntry>
+          </semantic:rule>
+          <semantic:rule id="_63d9940b-7aa8-43a7-91cd-722785ea4e60">
+            <semantic:inputEntry id="_82d556e7-5ea6-46e4-8a59-4d1df5a4c0fe">
+              <semantic:text>"Italy"</semantic:text>
+            </semantic:inputEntry>
+            <semantic:inputEntry id="_626c586d-d8f2-457b-b01e-2e96e27d0556">
+              <semantic:text>&gt;= 21</semantic:text>
+            </semantic:inputEntry>
+            <semantic:outputEntry id="_c5e2c625-02e5-4a34-9167-cefe42e50c44">
+              <semantic:text>true</semantic:text>
+            </semantic:outputEntry>
+          </semantic:rule>
+        </semantic:decisionTable>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:literalExpression id="_769e2fe1-9d23-4fba-8662-8e0ce9ddff15">
+          <semantic:text>Result</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+    </semantic:context>
+  </semantic:decision>
+  <semantic:businessKnowledgeModel id="_eca71f36-6cf2-4e08-bcb0-311fdcaef3f3" name="Country has cars">
+    <semantic:encapsulatedLogic xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:kind="F" id="_29a8660c-3675-4734-a03a-8e4861ea69f3">
+      <semantic:formalParameter id="_8ab024bc-d82d-48a8-a0d7-0a0d7b06168b" name="Person" typeRef="tPerson"/>
+      <semantic:literalExpression id="_c245ce8b-a55f-45ac-b625-5707dd625df1">
+        <semantic:text>Person.address.country = "United States" or Person.address.country = "Germany"</semantic:text>
+      </semantic:literalExpression>
+    </semantic:encapsulatedLogic>
+    <semantic:variable id="_ee0172d5-a45a-4d72-9ab4-92b37c410ab4" name="Country has cars" typeRef="feel:boolean"/>
+  </semantic:businessKnowledgeModel>
+  <semantic:businessKnowledgeModel id="_1ff06a21-4c8c-4e00-9829-0bc21479b1ed" name="Practice duration">
+    <semantic:encapsulatedLogic xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:kind="J" id="_202f0a48-e53e-4386-aaf0-4c355584eeb1">
+      <semantic:formalParameter id="_e52463ba-cab0-484d-bbd6-42f7f4659b18" name="Person" typeRef="tPerson"/>
+      <semantic:context>
+        <semantic:contextEntry>
+          <semantic:variable id="_1947f444-cb30-4dda-bfb9-66cd319fa562" name="class" typeRef="feel:string"/>
+          <semantic:literalExpression id="_7f2d531a-d587-44b4-a02f-3f5a42094893">
+            <semantic:text>"model.ext.PersonExtender"</semantic:text>
+          </semantic:literalExpression>
+        </semantic:contextEntry>
+        <semantic:contextEntry>
+          <semantic:variable id="_031ada57-b2d6-46e4-97e4-331fb614e617" name="method signature" typeRef="feel:string"/>
+          <semantic:literalExpression id="_63afdeb8-1895-42d8-9cc8-f7a6ae165d4a">
+            <semantic:text>"calculateTotalPracticeDuration(model.Person)"</semantic:text>
+          </semantic:literalExpression>
+        </semantic:contextEntry>
+      </semantic:context>
+    </semantic:encapsulatedLogic>
+    <semantic:variable id="_df7483bf-9d5d-4be0-9d46-fa4517808c65" name="Practice duration" typeRef="feel:dayTimeDuration"/>
+  </semantic:businessKnowledgeModel>
+</semantic:definitions>
