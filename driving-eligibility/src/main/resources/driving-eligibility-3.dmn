@@ -24,7 +24,7 @@
       <semantic:requiredKnowledge href="#_c2bfd867-680b-4c1c-be97-35f0fc37b78e"/>
     </semantic:knowledgeRequirement>
     <semantic:literalExpression id="_45c24b7c-6d87-454e-9960-f87952cb90b4">
-      <semantic:text>Minimum age(Person)</semantic:text>
+      <semantic:text>Minimum age(Person) and Country has cars(Person)</semantic:text>
     </semantic:literalExpression>
   </semantic:decision>
   <semantic:inputData id="_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874" name="Person">
@@ -52,7 +52,7 @@
         <semantic:contextEntry>
           <semantic:variable id="_add6465f-dcb5-4586-b024-02a88d005de9" name="method signature" typeRef="feel:string"/>
           <semantic:literalExpression id="_41089bc5-ec2c-4024-aa73-6dac4173d7c8">
-            <semantic:text>"countryHasCars(Person)"</semantic:text>
+            <semantic:text>"countryHasCars(model.Person)"</semantic:text>
           </semantic:literalExpression>
         </semantic:contextEntry>
       </semantic:context>
